@@ -5,15 +5,13 @@ angularS3FileUpload.directive('ngS3FileUpload', function() {
     restrict: 'AE',
     scope: {
       data: '=',
-      mode: '@',
+      config: '@',
       autoUpload: '@',
       showProgress: '@'
     },
     templateUrl: 'templates/angular-s3-file-upload.html',
     controller: ['$scope', 'S3Uploader', function ($scope, S3Uploader) {
       'use strict';
-
-      var that = this;
 
       $scope.uploadPercent = 0;
       $scope.readyToUpload = false;
@@ -24,8 +22,8 @@ angularS3FileUpload.directive('ngS3FileUpload', function() {
         if ($scope.showProgress) {
           $scope.showProgressBar = true;
         }
-        S3Uploader.getCredentials($scope.file.type, $scope.mode).then(function(creds) {
-          that.uploadToS3($scope, creds);
+        S3Uploader.getCredentials($scope.file.type, $scope.config).then(function(creds) {
+          uploadToS3($scope, creds);
         });
       };
 
@@ -87,15 +85,14 @@ angularS3FileUpload.directive('ngS3FileUpload', function() {
 angularS3FileUpload.service('S3Uploader', ['$http', '$q', function S3Uploader($http, $q) {
   'use strict';
 
-  this.getCredentials = function(mimetype, mode) {
+  this.getCredentials = function(mimetype, configPath) {
     var dfr = $q.defer();
 
     $http({
       method: 'GET',
-      url: '/uploader_config',
+      url: configPath,
       params: {
-        mimetype: mimetype,
-        mode: mode
+        mimetype: mimetype
       }
     }).success(function(res) {
       dfr.resolve(res);

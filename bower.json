@@ -5,7 +5,7 @@
     "Sasha Shamne <alexander.shamne@gmail.com>"
   ],
   "description": "Angular S3 file uploader",
-  "main": "angularS3FileUpload.js",
+  "main": "angular-s3-file-upload.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
