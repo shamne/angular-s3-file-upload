@@ -67,7 +67,7 @@ angularS3FileUpload.directive('ngS3FileUpload', function() {
           if (xhr.readyState === 4) {
             //complete
             console.log('complete');
-            $scope.data = uploadPath + creds.key + $scope.file.name;
+            $scope.data = uploadPath + creds.key.replace('${filename}', '') + $scope.file.name;
             console.log('complete data', $scope.data);
             $scope.showProgressBar = false;
             $scope.$apply();
