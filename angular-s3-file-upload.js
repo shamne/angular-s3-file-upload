@@ -23,7 +23,7 @@ angularS3FileUpload.directive('ngS3FileUpload', function() {
           $scope.showProgressBar = true;
         }
         S3Uploader.getCredentials($scope.file.type, $scope.config).then(function(creds) {
-          uploadToS3($scope, creds);
+          uploadToS3($scope, creds.config);
         });
       };
 
@@ -38,16 +38,16 @@ angularS3FileUpload.directive('ngS3FileUpload', function() {
 
       function uploadToS3($scope, creds) {
         var fd = new FormData();
-        var uploadPath = 'https://' + creds.bucket + '.s3.amazonaws.com/';
+        var uploadPath = 'https://' + creds.s3Bucket + '.s3.amazonaws.com/';
 
         // Populate the Post paramters.
-        fd.append('key', creds.key + '${filename}');
-        fd.append('AWSAccessKeyId', creds.AWSAccessKeyId);
-        fd.append('acl', 'public-read');
+        fd.append('key', creds.key);
+        fd.append('AWSAccessKeyId', creds.awsAccessKeyId);
+        fd.append('acl', creds.acl);
         fd.append('success_action_status', '201');
         fd.append('policy', creds.s3Policy);
         fd.append('signature', creds.s3Signature);
-        fd.append('utf8', '');
+        // fd.append('utf8', '');
         // fd.append('Content-Type', $scope.file.type);
         // File must be added last
         fd.append('file', $scope.file);
