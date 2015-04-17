@@ -109,10 +109,10 @@ angularS3FileUpload.run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('templates/angular-s3-file-upload.html',
-    '<div class=\'input-group\'>' +
-    '  <input type=\'file\' onchange=\'angular.element(this).scope().filesChanged(this)\' class=\'fa-file-input\' />' +
-    '  <a ng-click=\'upload()\' class=\'small button success radius\' ng-if=\'readyToUpload\'>upload</a>' +
-    '  <div class=\'progress success round\' ng-if=\'showProgressBar\'><span class=\'meter\' style=\'width: {{uploadPercent}}%\'></span></div>' +
+    '<div class=\'angular-s3-file-upload\'>' +
+    '  <input type=\'file\' onchange=\'angular.element(this).scope().filesChanged(this)\' />' +
+    '  <a ng-click=\'upload()\' class=\'angular-s3-file-upload-button\' ng-if=\'readyToUpload\'>upload</a>' +
+    '  <div class=\'progress\' ng-if=\'showProgressBar\'><span class=\'meter\' style=\'width: {{uploadPercent}}%\'></span></div>' +
     '</div>'
   );
 }]);
