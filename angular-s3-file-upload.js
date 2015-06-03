@@ -48,7 +48,7 @@ angularS3FileUpload.directive('ngS3FileUpload', function() {
         fd.append('policy', creds.s3Policy);
         fd.append('signature', creds.s3Signature);
         // fd.append('utf8', '');
-        // fd.append('Content-Type', $scope.file.type);
+        if (creds.contentType) fd.append('Content-Type', $scope.file.type);
         // File must be added last
         fd.append('file', $scope.file);
 
