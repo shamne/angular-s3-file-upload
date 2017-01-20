@@ -8,7 +8,7 @@ Angular JS directive to upload files to s3.
 <script src="angular.min.js"></script>
 <script src="angular-s3-file-upload.js"></script>
 
-<ng-s3-file-upload data="modelFilePath" config="/s3_uploader_config.json" show-progress="1" auto-upload="1"></ng-s3-file-upload>
+<ng-s3-file-upload data="modelFilePath" config="/s3_uploader_config.json" show-progress="1" auto-upload="1" accept="application/pdf"></ng-s3-file-upload>
 
 ```
 
